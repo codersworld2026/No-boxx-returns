@@ -650,8 +650,87 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
   .footer-inner { flex-direction: column; text-align: center; }
 }
 
-/* respect reduced motion */
+/* ============================================================
+   ANIMATIONS — reveal on load / scroll (JS-gated, GPU-friendly)
+   Hidden state is scoped to .js, so no-JS users always see content.
+   Only opacity + transform are animated (no layout shift, no overflow).
+   ============================================================ */
+
+/* staggered hero headline lines keep the stacked layout */
+.hero-line { display: block; }
+
+/* base transitions (defined for all so the reveal is always smooth) */
+.animate-reveal,
+.animate-fade {
+  transition: opacity .65s ease, transform .65s cubic-bezier(.2, .7, .2, 1);
+}
+
+/* hidden -> visible */
+.js .animate-reveal { opacity: 0; transform: translateY(18px); }
+.js .animate-reveal.is-visible { opacity: 1; transform: none; }
+
+.js .animate-fade { opacity: 0; }
+.js .animate-fade.is-visible { opacity: 1; }
+
+/* reusable stagger delays */
+.stagger-1 { transition-delay: .06s; }
+.stagger-2 { transition-delay: .12s; }
+.stagger-3 { transition-delay: .18s; }
+.stagger-4 { transition-delay: .24s; }
+.stagger-5 { transition-delay: .30s; }
+.stagger-6 { transition-delay: .36s; }
+.stagger-7 { transition-delay: .42s; }
+.stagger-8 { transition-delay: .48s; }
+
+/* group cascades via :nth-child so identical items reveal one by one */
+.js .benefits .benefit:nth-child(1) { transition-delay: .30s; }
+.js .benefits .benefit:nth-child(2) { transition-delay: .38s; }
+.js .benefits .benefit:nth-child(3) { transition-delay: .46s; }
+
+.js .journey-step:nth-child(1) { transition-delay: .05s; }
+.js .journey-step:nth-child(2) { transition-delay: .14s; }
+.js .journey-step:nth-child(3) { transition-delay: .23s; }
+.js .journey-step:nth-child(4) { transition-delay: .32s; }
+
+.js .send-grid .send-card:nth-child(1) { transition-delay: .04s; }
+.js .send-grid .send-card:nth-child(2) { transition-delay: .10s; }
+.js .send-grid .send-card:nth-child(3) { transition-delay: .16s; }
+.js .send-grid .send-card:nth-child(4) { transition-delay: .22s; }
+.js .send-grid .send-card:nth-child(5) { transition-delay: .28s; }
+.js .send-grid .send-card:nth-child(6) { transition-delay: .34s; }
+.js .send-grid .send-card:nth-child(7) { transition-delay: .40s; }
+
+.js .faq-list .faq:nth-child(1) { transition-delay: .04s; }
+.js .faq-list .faq:nth-child(2) { transition-delay: .10s; }
+.js .faq-list .faq:nth-child(3) { transition-delay: .16s; }
+.js .faq-list .faq:nth-child(4) { transition-delay: .22s; }
+.js .faq-list .faq:nth-child(5) { transition-delay: .28s; }
+.js .faq-list .faq:nth-child(6) { transition-delay: .34s; }
+
+/* subtle, slow premium float on the pouch illustration */
+@keyframes pouchFloat {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50%      { transform: rotate(-4deg) translateY(var(--float, -12px)); }
+}
+.pouch { animation: pouchFloat 6.5s ease-in-out infinite; }
+@media (max-width: 600px) {
+  .pouch { --float: -7px; }   /* gentler movement on small screens */
+}
+
+/* respect reduced motion: show everything instantly, no motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .pouch { animation: none !important; }
+  .js .animate-reveal,
+  .js .animate-reveal.is-visible,
+  .js .animate-fade,
+  .js .animate-fade.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

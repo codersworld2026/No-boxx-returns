@@ -12,11 +12,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Enable JS-gated reveal animations. Without JS (or with reduced motion) all
+       content stays fully visible — the hidden state below is scoped to .js only. -->
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
   <!-- ============ HEADER ============ -->
-  <header class="site-header">
+  <header class="site-header animate-fade">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="no-boxx home">
         <span class="brand-mark" aria-hidden="true">
@@ -46,12 +50,12 @@
 
         <div class="hero-content">
           <h1 class="hero-title">
-            fill it.<br />
-            send it.<br />
-            <span class="accent">do good.</span>
+            <span class="hero-line animate-reveal stagger-1">fill it.</span>
+            <span class="hero-line animate-reveal stagger-2">send it.</span>
+            <span class="hero-line accent animate-reveal stagger-3">do good.</span>
           </h1>
 
-          <p class="hero-text">
+          <p class="hero-text animate-reveal stagger-4">
             Your no-boxx return package makes giving easy. Fill it with clothes,
             phones, or small essentials, follow the return steps, and send it back.
             We&rsquo;ll sort the items and pass them on to charities and communities
@@ -59,7 +63,7 @@
           </p>
 
           <ul class="benefits" aria-label="Why no-boxx">
-            <li class="benefit">
+            <li class="benefit animate-reveal">
               <span class="benefit-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -73,7 +77,7 @@
               </span>
             </li>
 
-            <li class="benefit">
+            <li class="benefit animate-reveal">
               <span class="benefit-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -86,7 +90,7 @@
               </span>
             </li>
 
-            <li class="benefit">
+            <li class="benefit animate-reveal">
               <span class="benefit-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -104,7 +108,7 @@
           <!-- TODO (QR): the "start your return" CTAs funnel to the #start banner for now.
                Once the bag's QR URL is known, point the #start banner button at the real
                return flow (or add a redirect from that URL to this page). -->
-          <div class="hero-actions">
+          <div class="hero-actions animate-reveal stagger-6">
             <a href="#start" class="btn btn-yellow btn-lg">
               start your return
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
@@ -117,7 +121,7 @@
         </div>
 
         <!-- ===== Hero visual: pouch + blob ===== -->
-        <div class="hero-visual">
+        <div class="hero-visual animate-reveal stagger-2">
           <span class="blob" aria-hidden="true"></span>
 
           <div class="pouch" role="img"
@@ -171,13 +175,13 @@
     <!-- ============ HOW IT WORKS ============ -->
     <section id="how" class="how section">
       <div class="container">
-        <h2 class="section-title centered">how it works</h2>
+        <h2 class="section-title centered animate-reveal">how it works</h2>
 
-        <p class="section-lead centered">follow the journey from your front door to someone who needs it.</p>
+        <p class="section-lead centered animate-reveal stagger-1">follow the journey from your front door to someone who needs it.</p>
 
         <div class="journey-wrap">
           <!-- orange directional arrows linking the four stops (wide screens) -->
-          <div class="journey-route" aria-hidden="true">
+          <div class="journey-route animate-reveal stagger-6" aria-hidden="true">
             <svg class="journey-arrow" viewBox="0 0 62 38" fill="none">
               <path d="M6 28 C 20 9 42 9 54 20 M54 20 L45 17 M54 20 L49 28"/>
             </svg>
@@ -190,7 +194,7 @@
           </div>
 
           <ol class="journey-track">
-            <li class="journey-step">
+            <li class="journey-step animate-reveal">
               <span class="journey-node">
                 <span class="journey-num" aria-hidden="true">1</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
@@ -204,7 +208,7 @@
               </div>
             </li>
 
-            <li class="journey-step">
+            <li class="journey-step animate-reveal">
               <span class="journey-node">
                 <span class="journey-num" aria-hidden="true">2</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
@@ -219,7 +223,7 @@
               </div>
             </li>
 
-            <li class="journey-step">
+            <li class="journey-step animate-reveal">
               <span class="journey-node">
                 <span class="journey-num" aria-hidden="true">3</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
@@ -234,7 +238,7 @@
               </div>
             </li>
 
-            <li class="journey-step">
+            <li class="journey-step animate-reveal">
               <span class="journey-node">
                 <span class="journey-num" aria-hidden="true">4</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
@@ -256,13 +260,13 @@
     <!-- ============ WHAT YOU CAN SEND ============ -->
     <section id="send" class="send section">
       <div class="container">
-        <h2 class="section-title centered">what you can send</h2>
-        <p class="section-lead centered">
+        <h2 class="section-title centered animate-reveal">what you can send</h2>
+        <p class="section-lead centered animate-reveal stagger-1">
           Pack your no-boxx with items that are clean, safe, and still useful to someone else.
         </p>
 
         <ul class="send-grid" aria-label="Items you can send">
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -272,7 +276,7 @@
             clothes
           </li>
 
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -283,7 +287,7 @@
             shoes
           </li>
 
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -294,7 +298,7 @@
             bags
           </li>
 
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -305,7 +309,7 @@
             mobile phones
           </li>
 
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -316,7 +320,7 @@
             small electronics
           </li>
 
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -327,7 +331,7 @@
             accessories
           </li>
 
-          <li class="send-card">
+          <li class="send-card animate-reveal">
             <span class="send-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -340,7 +344,7 @@
           </li>
         </ul>
 
-        <div class="warning" role="note">
+        <div class="warning animate-reveal stagger-2" role="note">
           <span class="warning-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
                  stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
@@ -359,41 +363,41 @@
     <!-- ============ FAQS ============ -->
     <section id="faqs" class="faqs section">
       <div class="container narrow">
-        <h2 class="section-title centered">faqs</h2>
+        <h2 class="section-title centered animate-reveal">faqs</h2>
 
         <div class="faq-list">
-          <details class="faq">
+          <details class="faq animate-reveal">
             <summary>What is this page for?</summary>
             <p>This page is for anyone who has received a reusable no-boxx return package.
               It explains how to fill the bag with suitable items, send it back, and support
               charity and community causes while reducing waste.</p>
           </details>
 
-          <details class="faq">
+          <details class="faq animate-reveal">
             <summary>What can I send?</summary>
             <p>Clean, safe, and still-useful items: clothes, shoes, bags, mobile phones,
               small electronics, accessories, and useful household essentials.</p>
           </details>
 
-          <details class="faq">
+          <details class="faq animate-reveal">
             <summary>What should I not send?</summary>
             <p>Please don&rsquo;t send anything dangerous, broken, dirty, sharp, illegal, or
               perishable. If you&rsquo;re unsure about an item, it&rsquo;s best to leave it out.</p>
           </details>
 
-          <details class="faq">
+          <details class="faq animate-reveal">
             <summary>Where do the items go?</summary>
             <p>Once sorted, suitable items are donated to charities and community causes that
               need them most, so your return helps real people nearby.</p>
           </details>
 
-          <details class="faq">
+          <details class="faq animate-reveal">
             <summary>Can I reuse the no-boxx package?</summary>
             <p>Yes &mdash; that&rsquo;s the whole idea. One bag, many returns. The reusable
               Velcro pouch is built to be used again and again, so nothing goes to waste.</p>
           </details>
 
-          <details class="faq">
+          <details class="faq animate-reveal">
             <summary>What happens after no-boxx receives my package?</summary>
             <p>Our team checks and sorts every item, then passes the suitable ones on to
               charity and community partners. Anything else, we reuse or recycle responsibly.</p>
@@ -405,7 +409,7 @@
     <!-- ============ FINAL CTA ============ -->
     <section id="start" class="final-cta section">
       <div class="container">
-        <div class="cta-banner">
+        <div class="cta-banner animate-reveal">
           <span class="cta-heart" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
               <path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>
@@ -469,6 +473,37 @@
         }
       }
       svg.appendChild(frag);
+    })();
+  </script>
+
+  <!-- Reveal-on-scroll / on-load animations (vanilla IntersectionObserver, no deps) -->
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.animate-reveal, .animate-fade');
+      if (!els.length) return;
+
+      function revealAll() {
+        for (var i = 0; i < els.length; i++) els[i].classList.add('is-visible');
+      }
+
+      // No IntersectionObserver (or reduced motion handled in CSS) -> show everything.
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) { revealAll(); return; }
+
+      try {
+        var io = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+        for (var i = 0; i < els.length; i++) io.observe(els[i]);
+      } catch (e) {
+        revealAll();
+      }
     })();
   </script>
 </body>
