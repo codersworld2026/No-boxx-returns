@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>no-boxx — return with purpose</title>
-  <meta name="description" content="Your no-boxx reusable return package makes giving easy. Fill it with clothes, phones, or small essentials, scan the QR code, send it back, and we'll donate the items to charities that need them most." />
+  <meta name="description" content="Your no-boxx reusable return package makes giving easy. Fill it with clothes, phones, or small essentials, follow the return steps, and send it back. We'll sort the items and donate them to charities and communities that need them most." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,8 +53,8 @@
 
           <p class="hero-text">
             Your no-boxx return package makes giving easy. Fill it with clothes,
-            phones, or small essentials, scan the QR code, follow the steps online,
-            and send it back. We&rsquo;ll sort the items and pass them on to charities
+            phones, or small essentials, follow the return steps, and send it back.
+            We&rsquo;ll sort the items and pass them on to charities and communities
             that need them most.
           </p>
 
@@ -101,20 +101,18 @@
             </li>
           </ul>
 
+          <!-- TODO (QR): the "start your return" CTAs funnel to the #start banner for now.
+               Once the bag's QR URL is known, point the #start banner button at the real
+               return flow (or add a redirect from that URL to this page). -->
           <div class="hero-actions">
             <a href="#start" class="btn btn-yellow btn-lg">
-              scan &amp; send
+              start your return
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6"/>
               </svg>
             </a>
-            <a href="#how" class="btn btn-ghost btn-lg">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              watch how it works
-            </a>
+            <a href="#how" class="btn btn-ghost btn-lg">how it works</a>
           </div>
         </div>
 
@@ -198,12 +196,12 @@
             <span class="step-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor"
                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="6" y="3" width="12" height="18" rx="2.5"/>
-                <path d="M9.5 8h2v2h-2zM12.5 8h2v2h-2zM9.5 11h2v2h-2zM12.5 11h2v2h-2z"/>
+                <path d="M21 11.5A9 9 0 1 1 12.5 3a9 9 0 0 1 6.5 2.8"/>
+                <path d="M8.5 11.5l2.7 2.7L18 6.6"/>
               </svg>
             </span>
-            <h3 class="step-title"><span>2.</span> scan it</h3>
-            <p>Scan the QR code on the package.</p>
+            <h3 class="step-title"><span>2.</span> prepare it</h3>
+            <p>Check the items are clean, safe, and ready to be reused.</p>
           </li>
 
           <span class="step-arrow" aria-hidden="true">
@@ -222,7 +220,7 @@
               </svg>
             </span>
             <h3 class="step-title"><span>3.</span> send it</h3>
-            <p>Follow the instructions and return it to our storage hub.</p>
+            <p>Follow the return instructions and send the package back to us.</p>
           </li>
 
           <span class="step-arrow" aria-hidden="true">
@@ -241,7 +239,7 @@
               </svg>
             </span>
             <h3 class="step-title"><span>4.</span> help others</h3>
-            <p>We sort your items and donate them to charity.</p>
+            <p>We sort your items and donate suitable items to charity/community causes.</p>
           </li>
         </ol>
       </div>
@@ -357,27 +355,40 @@
 
         <div class="faq-list">
           <details class="faq">
-            <summary>How many times can I reuse the no-boxx package?</summary>
-            <p>That&rsquo;s the whole idea &mdash; one bag, many returns. The reusable Velcro
-              pouch is built to be used again and again, so nothing goes to waste.</p>
+            <summary>What is this page for?</summary>
+            <p>This page is for anyone who has received a reusable no-boxx return package.
+              It explains how to fill the bag with suitable items, send it back, and support
+              charity and community causes while reducing waste.</p>
           </details>
 
           <details class="faq">
-            <summary>What happens to my items after I send them?</summary>
-            <p>Once your package reaches our storage hub, our team sorts every item and passes
-              it on to charities and community causes that need them most.</p>
+            <summary>What can I send?</summary>
+            <p>Clean, safe, and still-useful items: clothes, shoes, bags, mobile phones,
+              small electronics, accessories, and useful household essentials.</p>
           </details>
 
           <details class="faq">
-            <summary>Do I need to clean items before sending?</summary>
-            <p>Yes, please. Send items that are clean, safe, and still useful. This keeps the
-              donation process quick and respectful for the people who receive them.</p>
+            <summary>What should I not send?</summary>
+            <p>Please don&rsquo;t send anything dangerous, broken, dirty, sharp, illegal, or
+              perishable. If you&rsquo;re unsure about an item, it&rsquo;s best to leave it out.</p>
           </details>
 
           <details class="faq">
-            <summary>How do I return the package?</summary>
-            <p>Scan the QR code on the pouch, follow the short steps online, then drop it off
-              or send it back to our storage hub using the instructions provided.</p>
+            <summary>Where do the items go?</summary>
+            <p>Once sorted, suitable items are donated to charities and community causes that
+              need them most, so your return helps real people nearby.</p>
+          </details>
+
+          <details class="faq">
+            <summary>Can I reuse the no-boxx package?</summary>
+            <p>Yes &mdash; that&rsquo;s the whole idea. One bag, many returns. The reusable
+              Velcro pouch is built to be used again and again, so nothing goes to waste.</p>
+          </details>
+
+          <details class="faq">
+            <summary>What happens after no-boxx receives my package?</summary>
+            <p>Our team checks and sorts every item, then passes the suitable ones on to
+              charity and community partners. Anything else, we reuse or recycle responsibly.</p>
           </details>
         </div>
       </div>
@@ -393,7 +404,9 @@
             </svg>
           </span>
           <h2 class="cta-title">Every return helps reduce waste and support communities.</h2>
-          <a href="#top" class="btn btn-yellow btn-lg">start your return</a>
+          <!-- TODO (QR): replace href="#how" with the real return-flow URL once the bag's
+               QR is confirmed. This is the primary return CTA the others funnel toward. -->
+          <a href="#how" class="btn btn-yellow btn-lg">start your return</a>
         </div>
       </div>
     </section>

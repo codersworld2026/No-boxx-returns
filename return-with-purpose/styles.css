@@ -40,7 +40,7 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 
 body {
   margin: 0;
@@ -148,7 +148,12 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
 /* ============================================================
    HERO
    ============================================================ */
-.hero { padding: clamp(36px, 6vw, 70px) 0 clamp(40px, 6vw, 72px); }
+.hero {
+  padding: clamp(36px, 6vw, 70px) 0 clamp(40px, 6vw, 72px);
+  position: relative;
+  /* clip the decorative blob bleed to the viewport without affecting vertical layout */
+  overflow-x: clip;
+}
 .hero-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -520,8 +525,7 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-content { order: 1; }
   .hero-visual { order: 0; min-height: 0; padding: 10px 0 8px; }
-  .hero-title br { display: none; }          /* let it wrap naturally on small screens? keep stacked */
-  .hero-title { line-height: 1.02; }
+  .hero-title { line-height: 1.04; }         /* keep headline stacked (fill it / send it / do good) */
 }
 
 @media (max-width: 880px) {
