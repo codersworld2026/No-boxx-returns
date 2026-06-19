@@ -717,7 +717,150 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
   .pouch { --float: -7px; }   /* gentler movement on small screens */
 }
 
-/* respect reduced motion: show everything instantly, no motion */
+/* ============================================================
+   IMMERSIVE 3D / DEPTH LAYER
+   CSS 3D transforms, layered blobs, depth shadows, tilts, parallax.
+   Motion is transform/opacity only; fully disabled under reduced motion.
+   ============================================================ */
+
+/* clip any 3D bleed horizontally so rotations never cause page scroll */
+.section { position: relative; overflow-x: clip; }
+
+/* ambient depth background */
+body {
+  background:
+    radial-gradient(1100px 560px at 82% -8%, #e7f2e2 0%, transparent 60%),
+    radial-gradient(820px 520px at -12% 22%, #edf4e9 0%, transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ----- HERO: floating 3D pouch + layered depth ----- */
+.hero-visual { perspective: 1100px; perspective-origin: 50% 42%; }
+
+.depth-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(34px);
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.depth-blob--1 {
+  width: clamp(200px, 26vw, 340px); aspect-ratio: 1;
+  background: radial-gradient(circle at 38% 34%, #bfe8b7, transparent 70%);
+  top: -10%; right: -6%; opacity: .72;
+}
+.depth-blob--2 {
+  width: clamp(160px, 22vw, 280px); aspect-ratio: 1;
+  background: radial-gradient(circle at 50% 50%, #d6efd1, transparent 70%);
+  bottom: -6%; left: -4%; opacity: .8;
+}
+.depth-orb {
+  position: absolute;
+  width: clamp(46px, 6vw, 72px); aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #ffce5e, var(--yellow) 55%, #db8f0c);
+  box-shadow: 0 18px 30px -10px rgba(219, 143, 12, .55), inset 0 -6px 10px rgba(0, 0, 0, .12);
+  top: 6%; left: 0; z-index: 3; pointer-events: none;
+  will-change: transform;
+}
+
+.pouch-3d {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .25s ease-out;
+  will-change: transform;
+}
+.pouch-shadow {
+  position: absolute;
+  left: 50%; bottom: -7%;
+  width: 64%; height: 40px;
+  transform: translateX(-50%) translateZ(-60px);
+  background: radial-gradient(ellipse at center, rgba(16, 42, 32, .4), transparent 70%);
+  filter: blur(12px);
+  border-radius: 50%;
+  z-index: -1;
+}
+.pouch { box-shadow: var(--shadow), 0 42px 60px -30px rgba(16, 42, 32, .6), inset 0 1px 0 rgba(255, 255, 255, .08); }
+
+/* ----- HOW IT WORKS: extruded, tiltable 3D step tiles ----- */
+.journey-track { perspective: 1000px; }
+.journey-node {
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s ease;
+  transform: rotateX(9deg);
+  box-shadow: 0 8px 0 -1px #5fa65b, 0 22px 30px -14px rgba(16, 42, 32, .5);
+}
+@media (hover: hover) and (pointer: fine) {
+  .journey-step:hover .journey-node {
+    transform: rotateX(0deg) translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 0 -1px #5fa65b, 0 30px 40px -16px rgba(16, 42, 32, .55);
+  }
+}
+
+/* ----- WHAT YOU CAN SEND: raised 3D chips ----- */
+.send-grid { perspective: 1000px; }
+.send-card {
+  transform-style: preserve-3d;
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.send-icon { transition: transform .3s ease; transform: translateZ(0); }
+@media (hover: hover) and (pointer: fine) {
+  .send-card:hover {
+    transform: translateY(-10px) rotateX(7deg) rotateY(-5deg);
+    box-shadow: 0 26px 40px -18px rgba(16, 42, 32, .4);
+  }
+  .send-card:hover .send-icon { transform: translateZ(22px) scale(1.06); }
+}
+
+/* ----- FAQ: subtle depth ----- */
+.faq { transition: box-shadow .3s ease, transform .3s ease; }
+.faq[open] { box-shadow: 0 18px 30px -16px rgba(16, 42, 32, .3); }
+@media (hover: hover) and (pointer: fine) {
+  .faq:hover { transform: translateY(-2px); }
+}
+
+/* ----- FINAL CTA: layered premium depth ----- */
+.final-cta { overflow: clip; perspective: 1200px; }
+.scene-blob {
+  position: absolute; border-radius: 50%; filter: blur(40px);
+  z-index: 0; pointer-events: none; will-change: transform;
+}
+.scene-blob--a {
+  width: clamp(220px, 34vw, 460px); aspect-ratio: 1;
+  background: radial-gradient(circle at 40% 40%, #bfe7b8, transparent 70%);
+  top: -16%; left: -6%; opacity: .7;
+}
+.scene-blob--b {
+  width: clamp(180px, 28vw, 380px); aspect-ratio: 1;
+  background: radial-gradient(circle at 50% 50%, #ffe2a6, transparent 70%);
+  bottom: -20%; right: -6%; opacity: .55;
+}
+.final-cta .container { position: relative; z-index: 1; }
+.cta-banner { box-shadow: 0 40px 70px -34px rgba(16, 42, 32, .5), inset 0 1px 0 rgba(255, 255, 255, .4); }
+.cta-heart { animation: ctaHeartFloat 4.5s ease-in-out infinite; }
+@keyframes ctaHeartFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ----- mobile: flatten 3D, keep it readable ----- */
+@media (max-width: 880px) {
+  .journey-node {
+    transform: none;
+    box-shadow: 0 6px 0 -1px #5fa65b, 0 16px 24px -14px rgba(16, 42, 32, .45);
+  }
+  .depth-orb { display: none; }
+  body { background-attachment: scroll; }
+}
+@media (max-width: 600px) {
+  .depth-blob { filter: blur(26px); }
+  .pouch-shadow { display: none; }
+}
+
+/* respect reduced motion: show everything instantly, no motion, no 3D tilt */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
@@ -725,7 +868,10 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
   }
-  .pouch { animation: none !important; }
+  .pouch, .cta-heart { animation: none !important; }
+  .pouch-3d, .journey-node, .send-card, .send-icon, [data-parallax] {
+    transform: none !important;
+  }
   .js .animate-reveal,
   .js .animate-reveal.is-visible,
   .js .animate-fade,
