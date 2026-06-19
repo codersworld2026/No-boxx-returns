@@ -21,6 +21,8 @@
   /* accents */
   --yellow:        #f6b21f;
   --yellow-dark:   #e3a00d;
+  --route:         #f2a73c;   /* orange journey arrow (from reference) */
+  --cream:         #f4e7d3;   /* warm organic blob backdrop */
 
   /* text */
   --ink:           #233029;
@@ -337,43 +339,150 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
 }
 
 /* ============================================================
-   HOW IT WORKS
+   HOW IT WORKS — illustrated journey
+   (cream blob + green "stop" tiles + orange directional arrows)
    ============================================================ */
-.steps {
+.journey-wrap {
+  position: relative;
+  margin-top: clamp(46px, 6vw, 64px);
+}
+/* organic cream blob backdrop, echoing the reference scene */
+.journey-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -36px -10px -32px;
+  background: var(--cream);
+  border-radius: 46% 54% 56% 44% / 56% 50% 50% 44%;
+  z-index: 0;
+}
+
+/* orange directional arrows sitting in the gaps between stops (wide screens) */
+.journey-route {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 104px;
+  z-index: 1;
+  pointer-events: none;
+}
+.journey-arrow {
+  position: absolute;
+  top: 33px;
+  width: 62px;
+  height: 38px;
+  transform: translateX(-50%);
+}
+.journey-arrow:nth-of-type(1) { left: 25%; }
+.journey-arrow:nth-of-type(2) { left: 50%; }
+.journey-arrow:nth-of-type(3) { left: 75%; }
+.journey-arrow path {
+  stroke: var(--route);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.journey-track {
+  position: relative;
+  z-index: 2;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 8px;
-  margin-top: clamp(34px, 5vw, 54px);
+  gap: 0;
 }
-.step {
+.journey-step {
+  position: relative;
   flex: 1 1 0;
-  max-width: 240px;
+  min-width: 0;
+  padding-inline: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 6px 8px;
 }
-.step-icon {
-  width: 84px; height: 84px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  background: var(--mint);
-  color: var(--green-dark);
+
+/* the illustrated "object" for each stop */
+.journey-node {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  border-radius: 28px;
+  background: var(--green-soft);
+  border: 2.5px solid var(--green-dark);
   display: grid;
   place-items: center;
+  color: var(--green-dark);
+  box-shadow: 0 12px 22px -16px rgba(16, 42, 32, .5);
 }
-.step-title {
-  font-size: 1.12rem;
+.journey-node svg { width: 46px; height: 46px; }
+.journey-num {
+  position: absolute;
+  top: -10px; right: -10px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--green-dark);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--cream);
+}
+
+.journey-body { margin-top: 20px; }
+.journey-title {
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--green-dark);
   margin-bottom: 8px;
 }
-.step-title span { color: var(--green-soft); }
-.step p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-.step-arrow {
-  flex: none;
-  color: var(--green-dark);
-  margin-top: 30px;
-  opacity: 0.7;
+.journey-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 22ch;
+  margin-inline: auto;
+}
+
+/* tablet & mobile: vertical timeline that preserves the progression */
+@media (max-width: 880px) {
+  .journey-wrap::before { inset: -22px -16px; border-radius: 40px; }
+  .journey-route { display: none; }
+  .journey-track { flex-direction: column; }
+  .journey-step {
+    flex: none;
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+    padding-inline: 0;
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    column-gap: 20px;
+    align-items: start;
+    text-align: left;
+    padding-bottom: 30px;
+  }
+  .journey-step:last-child { padding-bottom: 0; }
+  .journey-step::before {                 /* orange dotted connector */
+    content: "";
+    position: absolute;
+    left: 46px;
+    top: 48px;
+    bottom: 0;
+    border-left: 3px dotted var(--route);
+    z-index: 0;
+  }
+  .journey-step:last-child::before { display: none; }
+  .journey-node { width: 92px; height: 92px; border-radius: 24px; z-index: 1; }
+  .journey-node svg { width: 42px; height: 42px; }
+  .journey-num { left: -10px; right: auto; }
+  .journey-body { margin-top: 0; padding-top: 8px; }
+  .journey-body p { max-width: none; margin-inline: 0; }
+}
+
+@media (max-width: 380px) {
+  .journey-step { grid-template-columns: 74px 1fr; column-gap: 15px; }
+  .journey-step::before { left: 37px; }
+  .journey-node { width: 74px; height: 74px; border-radius: 20px; }
+  .journey-node svg { width: 36px; height: 36px; }
+  .journey-num { width: 26px; height: 26px; font-size: .78rem; }
 }
 
 /* ============================================================
@@ -530,12 +639,6 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
 
 @media (max-width: 880px) {
   .main-nav { display: none; }               /* keep header clean on small screens */
-  .step-arrow { display: none; }
-  .steps {
-    flex-wrap: wrap;
-    gap: 30px 20px;
-  }
-  .step { flex: 1 1 40%; max-width: none; }
 }
 
 @media (max-width: 600px) {
@@ -544,7 +647,6 @@ h1, h2, h3 { margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
   .hero-actions .btn { flex: 1 1 100%; }
   .benefits { gap: 18px 22px; }
   .benefit { flex: 1 1 100%; }
-  .step { flex: 1 1 100%; }
   .footer-inner { flex-direction: column; text-align: center; }
 }
 
